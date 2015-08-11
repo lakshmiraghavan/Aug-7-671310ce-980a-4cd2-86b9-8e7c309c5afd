@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+
+      <script src="/javascripts/index.js"></script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+  <script>
+     /* getText('/ajaxTest', function (response) {
+          console.log(response);
+      });*/
+    //  getTextSync("/syncURL");
+
+     /* getParse('/getParse', function(response){
+          console.log(response);
+      })*/
+
+
+      var data = {
+          find: "pizza",
+          zipcode: 02134,
+          radius: "1km"
+      }
+   //  console.log(encodeFormData(data));
+
+   /*   postData("/getParse",data, function (res){
+          console.log(res);
+      });*/
+/*getParseData("/getParseData", data, function(res){
+    console.log(res);
+})*/
+      /*postJSON('postJSON', data,function(res){
+          console.log(res);
+      })*/
+
+
+     postXML("/postXML",'pizza', '01234', '1km', function(res){
+         console.log(res)
+     })
+
+  </script>
+  </body>
+</html>
