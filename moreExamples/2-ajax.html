@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*
+    Ready state exps
+     */
+
+    function getText(url, callback) {
+        var request = new XMLHttpRequest();
+
+        request.open("GET", url);
+
+        request.addEventListener('readystatechange',function(){
+            if (request.readyState === 4 && request.status === 200) {
+                var type = request.getResponseHeader("Content-Type");
+                console.log(type);
+                if (type.match(/^text/))
+
+                    callback(request.responseText);
+            }
+        });
+        request.send(null);
+
+    }
+
+    function callback(resp){
+        return console.log(resp);
+    }
+
+    getText('ajax.htm', callback);
+</script>
+</body>
+</html>

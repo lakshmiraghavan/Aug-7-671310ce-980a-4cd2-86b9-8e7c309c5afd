@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function encodeFormData(data) {
+
+
+        var pairs = [];
+
+        for (var name in data) {
+
+
+         /*   if (!data.hasOwnProperty(name)) continue;*/
+
+           /* if (typeof data[name] === "function") continue;*/
+
+            var value = data[name].toString();
+            //console.log(value)
+
+            name = encodeURIComponent(name.replace(" ", "+"));
+
+            value = encodeURIComponent(value.replace(" ", "+")); // Encode value
+            console.log(value)
+            pairs.push(name + "=" + value);
+            console.log(pairs)
+        }
+        return pairs.join('&'); // Return joined pairs separated with &
+    }
+    console.log(encodeFormData({name:'lakshmi raghavan', id: 500}))
+</script>
+
+</body>
+</html>

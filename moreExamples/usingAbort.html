@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <Title>AJAX test</Title>
+    <script language="javascript">
+
+
+        function getData(fileName)
+        {
+            var XmlHttp= new XMLHttpRequest();
+            XmlHttp.open("GET", fileName,true)
+            XmlHttp.addEventListener('readystatechange', function(){
+                if(XmlHttp.readyState !== 4){
+                    console.log("aborted");
+                    XmlHttp.abort();
+                }
+                if(XmlHttp.readyState == 4 && XmlHttp.status == 200) {
+
+
+                    document.getElementById("txtAjax").value=XmlHttp.responseText;
+
+                }
+            })
+            XmlHttp.send(null)
+            return true;
+        }
+    </script>
+</HEAD>
+<body>
+<form>
+    <INPUT id="txtAjax" type="text" name="Text1">
+    <br>
+    <button onclick="getData('Helloworld1.txt')"
+            type="button" ID="Button1">Helloworld1</button>
+    <br>
+    <button onclick="getData('Helloworld2.txt')"
+            type="button" ID="Button2">Helloworld2</button>
+</form>
+</body>
+</HTML>

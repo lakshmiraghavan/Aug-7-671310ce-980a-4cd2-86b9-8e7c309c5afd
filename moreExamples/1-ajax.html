@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <iframe id="iframe"  width="1024" height="600"></iframe>
+
+</head>
+<body>
+<script>
+ //   var frame = document.getElementById('iframe');
+ //   frame.src= "https://en.wikipedia.org/wiki/Liposome";
+   // frame.contentWindow.location = "http://www.sample.com";
+   // frame.contentWindow.open("http://www.sample.com");
+
+    /*
+    / If XMLHttpRequest() is not supported
+     */
+    if (window.XMLHttpRequest === undefined) {
+        window.XMLHttpRequest = function() {
+            try {
+
+                return new ActiveXObject("Msxml2.XMLHTTP.6.0");
+                console.log("activeXObject");
+            }
+            catch (e1) {
+                try {
+                    return new ActiveXObject("Msxml2.XMLHTTP.3.0");
+                    console.log("activeXObject");
+                }
+                catch(e2) {
+// Otherwise, throw an error
+                    throw new Error("XMLHttpRequest is not supported");
+                }
+            }
+        };
+    }
+    else{
+      //  console.log("XMLHttpRequest is supported");
+    }
+    /*
+    HTTP request consists of : HTTP verb, URL, request headers(optional), request body(optional)
+    HTTP response: status code, response headers, response body
+     */
+
+    /*
+    Post  example
+     */
+
+    function postMsg(msg){
+        var req = new XMLHttpRequest();
+        req.open('POST','ajax.htm');
+       req.setRequestHeader("Content-Type",
+                "text/plain;charset=UTF-8");
+        req.addEventListener('readystatechange', function () {
+            if (req.status === 200 && req.readyState === 4) {
+                console.log(req.responseText);
+
+            }
+        });
+        req.send(msg);
+    }
+ postMsg({name: 'lakshmi'});
+    /*
+    Ready state property 0-unsent, 1-opened, 2-header-received, 3-loading, 4-done
+     */
+
+</script>
+</body>
+</html>

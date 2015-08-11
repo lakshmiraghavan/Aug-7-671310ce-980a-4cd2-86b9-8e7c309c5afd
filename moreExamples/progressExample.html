@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<progress id="p"></progress>
+<script>
+    var progressBar = document.getElementById("p"),
+            client = new XMLHttpRequest();
+    client.open("GET", "ajax2.htm");
+    client.onprogress = function(pe) {
+        if(pe.lengthComputable) {
+            progressBar.max = pe.total;
+            progressBar.value = pe.loaded;
+        }
+    }
+    client.onloadend = function(pe) {
+        progressBar.value = pe.loaded;
+    }
+    client.send();
+</script>
+</body>
+</html>

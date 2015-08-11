@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var http = new XMLHttpRequest();
+    var url = "data.html";
+    var params = "lorem=ipsum&name=binny";
+    http.open("POST", url, true);
+
+
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.setRequestHeader("Content-length", params.length);
+    http.setRequestHeader("Connection", "close");
+
+    http.onreadystatechange = function() {
+        if(http.readyState == 4 && http.status == 200) {
+            console.log(JSON.stringify(http.responseText));
+        }
+    }
+    http.send(params);
+</script>
+
+</body>
+</html>

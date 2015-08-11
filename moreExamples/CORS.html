@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var body = '<?xml version="1.0"?><person><name>Arun</name></person>';
+    var url = 'http://bar.other/resources/credentialed-content/';
+    function postMsg(msg){
+        var req = new XMLHttpRequest();
+        req.open('POST',url);
+        req.setRequestHeader('X-PINGOTHER', 'pingpong');
+        req.setRequestHeader('Content-Type', 'application/xml');
+        req.addEventListener('readystatechange', function () {
+
+            if (req.status === 200 && req.readyState === 4) {
+                console.log(req.responseText);
+            }
+        });
+        req.send(msg);
+    }
+    postMsg(body);
+
+
+
+
+</script>
+</body>
+</html>
